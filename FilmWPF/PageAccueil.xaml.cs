@@ -23,5 +23,17 @@ namespace FilmWPF
         {
             InitializeComponent();
         }
+
+        private void btnFilm_Click(object sender, RoutedEventArgs e)
+        {
+            FilmGerer fmr = new FilmGerer();
+            fmr.Show();
+        }
+
+        private void btnSpectateur_Click(object sender, RoutedEventArgs e)
+        {
+            SpectateurGerer fmr = new SpectateurGerer();
+            fmr.Show();
+        }
     }
 }
