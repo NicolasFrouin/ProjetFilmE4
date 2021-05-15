@@ -5,8 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FilmWPF"
         mc:Ignorable="d"
-        Title="SpectateurGerer" Height="450" Width="800">
-    <Grid>
-        
+        Title="SpectateurGerer" Height="562" Width="1000" Loaded="Window_Loaded">
+
+
+    <Window.Resources>
+        <DataTemplate x:Key="tplListeActeurs">
+            <Border Name="brd" CornerRadius="5" BorderThickness="3" Width="70" Height="115" BorderBrush="Black" 
+                    Background="Orange" VerticalAlignment="Center">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Source="{Binding Photo}" Width="50" Stretch="UniformToFill"/>
+                    <TextBlock Name="txtPrenomActeur" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Text="{Binding personne.Prenom}"/>
+                    <TextBlock Name="txtNomActeur" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               Text="{Binding personne.Nom}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="Azure">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.1*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Administration des Spectateurs" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Center"
+                   HorizontalAlignment="Center" FontSize="60" FontFamily="Monotype Corsiva"/>
+        <TextBlock Text="Liste des films" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" FontSize="20"/>
+        <ListView Name="lstFilms" Grid.Row="2" Grid.RowSpan="3" SelectionChanged="lstFilms_SelectionChanged">
+            <!--<ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource styleListView}"/>
+            </ListView.ItemContainerStyle>-->
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Image" Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Image}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="25"/>
+                    <GridViewColumn Header="Titre" DisplayMemberBinding="{Binding Titre}" Width="180"/>
+                    <GridViewColumn Header="Durée" DisplayMemberBinding="{Binding Duree}" Width="65"/>
+                    <GridViewColumn Header="Nombre d'entrées" DisplayMemberBinding="{Binding NbEntrees}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Text="Liste des acteurs" Grid.Column="0" Grid.Row="5" VerticalAlignment="Center" FontSize="20"/>
+        <ListBox Name="lstActeurs" Grid.Row="6" Grid.RowSpan="3" SelectionChanged="lstActeurs_SelectionChanged" 
+                 ItemTemplate="{StaticResource ResourceKey=tplListeActeurs}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <!--Il manque le formulaire de réservation à un film-->
     </Grid>
 </Window>
